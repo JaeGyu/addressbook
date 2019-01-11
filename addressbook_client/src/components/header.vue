@@ -6,8 +6,8 @@
 
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
-          <b-nav-item href="#" disabled>입력</b-nav-item>
-          <b-nav-item href="#">조회</b-nav-item>
+          <b-nav-item to="/main/create">입력</b-nav-item>
+          <b-nav-item to="/main/list">조회</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">

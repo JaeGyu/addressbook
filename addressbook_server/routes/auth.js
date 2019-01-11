@@ -8,24 +8,22 @@ const { verifyToken } = require('../middlewares/utils');
 router.use(cors());
 
 router.post('/login', (req, res, next) => {
-    User.findOne({ where: { 'userId': req.body.id } })
+    User.findOne({ where: { 'userId': req.body.id, 'password': req.body.password } })
         .then((data) => {
             if (!data) {
                 throw new Error('아이디 또는 비밀번호를 다시 확인하세요. 시스템에 등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.');
             }
-
-            if (data.password === req.body.password) {
-                const token = jwt.sign({
-                    id: data.userId,
-                    grade: data.grade
-                }, process.env.JWT_SECRET_KEY, {
-                        expiresIn: '10m',
-                        issuer: 'jaegyu'
-                    });
-                res.status(200).json({
-                    token
+            const token = jwt.sign({
+                seq: data.id,
+                id: data.userId,
+                grade: data.grade
+            }, process.env.JWT_SECRET_KEY, {
+                    expiresIn: '10m',
+                    issuer: 'jaegyu'
                 });
-            }
+            res.status(200).json({
+                token
+            });
         })
         .catch((error) => {
             let status = (error.name === 'Error') ? 401 : 500;

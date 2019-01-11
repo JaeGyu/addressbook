@@ -4,12 +4,12 @@ import Login from '../components/login';
 import Container from '../components/container';
 import Main from '../components/main';
 import List from '../components/list';
-
+import Create from '../components/create'
 
 Vue.use(Router);
 
 export default new Router({
-    // mode: 'history',
+    mode: 'history',
     routes: [{
         path: '/',
         component: Container,
@@ -19,43 +19,13 @@ export default new Router({
         }, {
             path: 'main',
             component: Main,
-            children:[{
-                path:'list',
+            children: [{
+                path: 'list',
                 component: List
+            }, {
+                path: 'create',
+                component: Create
             }]
         }]
     }]
 });
-
-
-
-
-// export default new Router({
-//     // mode: 'history',
-//     routes: [
-//         {
-//             path: '/',
-//             component: Root,
-//             children: [{
-//                 path: 'login',
-//                 component: Login
-//             }, {
-//                 path: 'header',
-//                 component: Header,
-//                 children: [{
-//                     path: 'userAdmin',
-//                     components: {
-//                         header: UserAdminHeader,
-//                         content: UserAdmin
-//                     }
-//                 }, {
-//                     path: 'companyAdmin',
-//                     components: {
-//                         header: CompanyAdminHeader,
-//                         content: CompanyAdmin
-//                     }
-//                 }]
-//             }]
-//         }
-//     ]
-// })
