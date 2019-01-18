@@ -39,6 +39,12 @@
           </b-form-group>
         </b-form>
       </b-card>
+      <b-alert
+        variant="success"
+        :show="dismissCountDown"
+        @dismissed="dismissCountDown=0"
+        @dismiss-count-down="countDownChanged"
+      >저장 되었습니다.</b-alert>
     </b-container>
   </div>
 </template>
@@ -50,6 +56,8 @@ import { store } from "../models";
 export default {
   data() {
     return {
+      dismissSecs: 2,
+      dismissCountDown: 0,
       member: {
         name: "",
         address: "",
@@ -60,6 +68,12 @@ export default {
     };
   },
   methods: {
+    showAlert() {
+      this.dismissCountDown = this.dismissSecs;
+    },
+    countDownChanged: function(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
     async save() {
       try {
         const res = await axios.post(
@@ -72,6 +86,8 @@ export default {
           }
         );
 
+        this.reset();
+        this.showAlert();
       } catch (error) {
         console.error(error);
       }
@@ -79,7 +95,7 @@ export default {
     reset: function() {
       this.member.name = "";
       this.member.address = "";
-      this.member.cellPhone = "";
+      this.member.cellphone = "";
       this.member.phone = "";
       this.member.zipcode = "";
     }
