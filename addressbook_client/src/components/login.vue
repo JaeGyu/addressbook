@@ -1,38 +1,39 @@
 <template>
-  <div>
-    <b-container>
-      <h1>로그인</h1>
-      <b-form @submit.prevent="login">
-        <b-form-group id="idGroup"
-                    label="아이디"
-                    label-for="id">
-        <b-form-input id="id"
-                      type="text"
-                      v-model="id"
-                      required
-                      autofocus
-                      placeholder="아이디를 입력 하세요">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="passwordGroup" 
-                    label="패스워드" 
-                    label-for="password">
-        <b-form-input id="password" 
-                      type="password" 
-                      required 
-                      v-model="password"
-                      placeholder="패스워드를 입력하세요"></b-form-input>
-      </b-form-group>
+  <div class="pt-5">
+    <b-container class="mx-auto w-50 pt-5">
+      <b-card class="mt-5">
+        <h1>로그인</h1>
+        <b-form @submit.prevent="login">
+          <b-form-group id="idGroup" label="아이디" label-for="id">
+            <b-form-input
+              id="id"
+              type="text"
+              v-model="id"
+              required
+              autofocus
+              placeholder="아이디를 입력 하세요"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group id="passwordGroup" label="패스워드" label-for="password">
+            <b-form-input
+              id="password"
+              type="password"
+              required
+              v-model="password"
+              placeholder="패스워드를 입력하세요"
+            ></b-form-input>
+          </b-form-group>
 
-      <b-alert variant="danger"
-             dismissible
-             :show="showDismissibleAlert"
-             @dismissed="showDismissibleAlert=false">
-        {{ errorMsg }}
-      </b-alert>
+          <b-alert
+            variant="danger"
+            dismissible
+            :show="showDismissibleAlert"
+            @dismissed="showDismissibleAlert=false"
+          >{{ errorMsg }}</b-alert>
 
-      <b-button type="submit" class="btn-block" variant="primary">로그인</b-button>
-      </b-form>
+          <b-button type="submit" class="btn-block" variant="primary">로그인</b-button>
+        </b-form>
+      </b-card>
     </b-container>
   </div>
 </template>
